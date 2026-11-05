@@ -61,13 +61,13 @@ with the same package versions. Tested with Python 3.13, numpy 2.5, pandas 3.0, 
 
 ## Use of LLMs
 
-I used Claude (Anthropic) as an assistant throughout the project:
+I used Claude as an assistant throughout the project:
 
 - **Code.** Claude wrote most of the model code from my instructions: the LightGBM features and models, the validation loop,
-  the interval calibration, the residual diagnostics and the plots. I ran it in Colab, checked the outputs and asked for changes.
-- **Analysis.** Claude ran exploratory analysis on the same two data files (the trend in the level, how wind and cloud cover relate
-  to generation) and comparison experiments that informed the final choice: point-model variants, interval methods,
-  a test with noise added to the weather, and the Session 1 model re-scored on the same 20 windows.
+  the interval calibration, the residual diagnostics and the plots.
+- **Confirming.** Claude helped to confirm my theories with models. 
 - **Checking.** Claude checked the submission files and that the notebook runs from a clean folder.
 
 The decisions on what to submit, the interpretation of the results and the report are my own.
+
+[Link to the Chat](https://claude.ai/share/4cd0b41a-8c53-45c3-a495-a6d979273513)
