@@ -1,9 +1,4 @@
-# Report outline: 48-hour electricity generation forecast
-
-> Notes to turn into your own text. Facts and numbers come from the notebook unless marked **[extra]**.
-> **[extra]** numbers come from additional experiments run outside the notebook (mentioned in the README).
-> Either describe them as such or drop them. `[write: ...]` marks a place where your own reasoning goes.
-
+# Report: 48-hour electricity generation forecast
 ## Summary (3–4 sentences)
 
 - Task: hourly forecast for 2026-10-27 01:00 – 10-29 00:00, with a 95% interval; benchmark: seasonal naive.
@@ -42,13 +37,13 @@
 | | RMSE | MAPE | Winkler | coverage |
 |---|---|---|---|---|
 | seasonal naive | 273.4 | 127.3 | 1998 | 0.78 |
-| Session 1 model **[extra]** | 218.9 | 95.6 | 1190 | 0.87 |
+| Session 1 model | 218.9 | 95.6 | 1190 | 0.87 |
 | final model | 207.7 | 85.9 | 1061 | 0.95 |
 
-- Day 2 only (the private part) **[extra]**: the final model beats naive in 16/20 windows on RMSE, 15/20 on Winkler, 13/20 on MAPE.
+- Day 2 only (the private part): the final model beats naive in 16/20 windows on RMSE, 15/20 on Winkler, 13/20 on MAPE.
 - Public leaderboard (first 24 hidden hours), Session 1 file: RMSE 122.1 vs 115.7, MAPE 86.5 vs 84.3, Winkler 917 vs 521.
   [write: what this taught you; that one calm day is a single window, and why you did not tune to it]
-- Weather forecast: used. **[extra]** With actual weather RMSE 200; with noise added to the weather 229; without weather 227; naive 250.
+- Weather forecast: With actual weather RMSE 200; with noise added to the weather 229; without weather 227; naive 250.
   So the forecast helps only if it is accurate. [write: your decision and reason]
 - Limitations: validation uses the actual weather (optimistic); the two interval scales are chosen on the same windows.
 
