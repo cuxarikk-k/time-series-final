@@ -1,4 +1,5 @@
-  numpy
-  pandas
-  matplotlib
-  lightgbm
+numpy
+pandas
+matplotlib
+lightgbm
+statsmodels
