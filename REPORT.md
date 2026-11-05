@@ -5,7 +5,7 @@
 - Final model: two LightGBM models (absolute and level-normalised target), separate models for day 1 and day 2,
   interval = average of residual quantiles and CQR, both scaled by the recent level.
 - On 20 validation windows: RMSE 208 vs 273, MAPE 86 vs 127, Winkler 1061 vs 1998, coverage 0.95 vs 0.78.
-- [write: one sentence on Session 1 vs final]
+- My Tuesday model beat snaive on the 20 validation windows, but on the public leaderboard it lost on all three metrics and placed 29th. The main reason was the interval, which was too wide: Winkler 917 vs 521 for the benchmark, while RMSE and MAPE were only slightly worse. On the same 20 validation windows, my final model beats my first model on all three metrics (RMSE 219 → 208, MAPE 96 → 86, Winkler 1190 → 1061), and its interval is almost half as wide (mean width 917 → 513).
 
 ## 1. What is in the series?
 
@@ -24,7 +24,7 @@
 - Growing level → trees cannot extrapolate it, so one model predicts `y / (mean of the last 7 days)` and multiplies back.
 - Persistence → lags of y matter most. Day 1 may use the last 24 hours (lag 24), day 2 only lag ≥ 48, so each day has its own models.
 - Wind drives the night level → weather features stay in.
-- [write: which of these you consider the most important finding and why]
+- The most significant finding is that the series level fluctuates considerably: in September, generation was three times higher than in late October. This negatively affected both the forecast and the interval. Tree-based models (like LightGBM) cannot predict values ​​higher than those observed during training. Furthermore, the interval—calibrated based on the "high" levels seen in September—ended up being too wide for the "low" levels in October. For this reason, the final model performs all calculations relative to the level observed over the last week.
 
 ## 2. How did you check the forecast before submitting it?
 
@@ -77,11 +77,11 @@
 | approach | result | why dropped |
 |---|---|---|
 | lags ≥ 48 for the whole horizon (Session 1) | first day cannot see the last day | separate day-1 model: skill 0.803 → 0.793 |
-| blend with seasonal naive (final model) **[extra]** | RMSE 205 → 208, MAPE 120 → 135 on day 2 | worse on average |
+| blend with seasonal naive (final model) | RMSE 205 → 208, MAPE 120 → 135 on day 2 | worse on average |
 | log target (Session 1) | MAPE 79 → 60, RMSE 249 → 302 | RMSE too much worse |
 | separate interval scale for day and night (Session 1) | skill 0.803 → 0.802 | no gain |
-| train only on the last year **[extra]** | RMSE 204 → 204 | no gain |
-| no weather features **[extra]** | RMSE 200 → 227 | weather helps |
+| train only on the last year | RMSE 204 → 204 | no gain |
+| no weather features | RMSE 200 → 227 | weather helps |
 | absolute-unit interval (Session 1) | too wide after a level change | replaced with level-scaled interval |
 
 - [write: what you would do next: e.g. a better daily level estimate, a model for the daytime peak]
