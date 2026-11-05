@@ -64,6 +64,7 @@
 - By horizon: the gain over naive is mostly at night and in the evening (~130–190 vs ~250–330);
   at the daytime peaks (10–15 and 34–40 hours ahead) the model is close to snaive.
 - Autocorrelation: 0.77 at lag 1, back to ~0 by lag 8, ~0.28 at lag 24 → errors come in whole days, not single hours.
+- he within-window ACF removes each window’s mean error and shows a sign change after 12–15 hours (day vs evening bias). The pooled ACF keeps it and stays positive, showing that much of the error is a level shift over the whole window.
 - Residuals represent what the model failed to predict correctly. They reveal two things:
 
   1. The model's errors tend to persist throughout the day: if it underestimates the forecast at 10:00, it is highly likely to do so at 11:00 as well. This is because the model does not capture day-to-day shifts in the overall generation level, which depend on more than the weather features it sees.
